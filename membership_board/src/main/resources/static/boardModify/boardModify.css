@@ -1,0 +1,145 @@
+/* boardModify.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh; /* Viewport height를 100% 채우기 */
+}
+
+#wrapper {
+    flex: 1;
+}
+
+#withdrawSection {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px; /* 여백 추가 */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0 20px;
+    height: 64px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+
+.logo {
+    width: 120px;
+    height: 56px;
+    margin-right: 40px;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+    margin-right: 100px; /* 오른쪽에 자동 마진을 적용하여 왼쪽으로 이동 */
+}
+
+.auth a {
+    padding: 5px 10px; /* 기존의 8px 16px에서 패딩 크기를 줄임 */
+    margin-left: 5px; /* 각 링크 사이의 공간을 조정 */
+    font-size: 12px; /* 텍스트 크기를 줄임 */
+    background-color: #b3fcf8;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+/*게시글 수정 부분*/
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    margin-top: 70px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+input[type=text], textarea, button, input[type=file] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical; /* allow vertical resize */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%; /* Adjust the width to make them half-width */
+}
+
+button[type="button"] {
+    background-color: #dc3545; /* Different color for cancel button */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button[type="button"]:hover {
+    background-color: #c82333;
+}
+
+input[type=file] {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    button:last-child {
+        margin-bottom: 0;
+    }
+}
