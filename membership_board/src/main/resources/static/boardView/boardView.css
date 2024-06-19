@@ -1,0 +1,250 @@
+/* Reset CSS */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh; /* Viewport height를 100% 채우기 */
+}
+
+#wrapper {
+    flex: 1;
+}
+
+#withdrawSection {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px; /* 여백 추가 */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0 20px;
+    height: 64px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+
+.logo {
+    width: 120px;
+    height: 56px;
+    margin-right: 40px;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+    margin-right: 100px; /* 오른쪽에 자동 마진을 적용하여 왼쪽으로 이동 */
+}
+
+.auth a {
+    padding: 5px 10px; /* 기존의 8px 16px에서 패딩 크기를 줄임 */
+    margin-left: 5px; /* 각 링크 사이의 공간을 조정 */
+    font-size: 12px; /* 텍스트 크기를 줄임 */
+    background-color: #b3fcf8;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.body {
+    max-width: 800px;
+    margin: 20px auto;
+    margin-top: 70px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.boardtitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.board-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.boardtitle-information {
+    color: #888;
+    font-size: 14px;
+}
+
+.menu-wrapper { /* 신고 및 수정 메뉴바 */
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+.menu-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.menu-btn {
+    cursor: pointer;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.menu-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-content ul li {
+    padding: 8px 12px;
+}
+
+.menu-content ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.menu-content ul li a:hover {
+    background-color: #ddd;
+}
+
+#menu-toggle:checked + .menu-btn + .menu-content {
+    display: block;
+}
+
+
+.boardcontent {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.post-buttons, .post-navigation{ /* 좋아요 싫어요 버튼 */
+    text-align: center;
+}
+
+.post-buttons {
+    margin-bottom: 20px;
+}
+
+.post-buttons button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.post-navigation button {
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#prevButton {
+    margin-right: auto; /* Pushes the button to the far left */
+}
+
+#nextButton {
+    margin-left: auto; /* Pushes the button to the far right */
+}
+
+
+.comments-section {
+    margin-top: 30px;
+}
+
+.comments-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#comments {
+    margin-top: 20px;
+}
+
+.comment {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.comment-content {
+    margin-bottom: 5px;
+}
+
+.comment-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+.comment-meta .comment-author {
+    margin-right: 10px;
+}
+
+.comment-meta .comment-date {
+    color: #888;
+}
+
+#commentInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    resize: vertical; /* 세로로만 크기 조정 가능하도록 설정 */
+}
+
+#commentButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#commentButton:hover {
+    background-color: #0056b3;
+}
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세보기 페이지</title>
+    <link rel="stylesheet" th:href="@{/boardView/boardView.css}">
+</head>
+<body>
+<!--상단 고정바-->
+<div class="header">
+    <a th:href="@{/board/list}">
+        <img th:src="@{/img/logo.png}" alt="pltoo 로고" class="logo">
+    </a>
+    <div class="auth" th:if="${isLogin}">
+        <a href="/logout">마이페이지</a>
+        <a href="/logout">로그아웃</a>
+    </div>
+    <div class="auth" th:if="${!isLogin}">
+        <a href="/member/login">로그인</a>
+        <a href="/member/joinNew.html">회원가입</a>
+    </div>
+</div>
+
+<!--게시글 상세보기 부분-->
+<div class="body">
+    <h1 th:text="${board.title}" class="boardtitle">제목입니다.</h1>
+    <div class="board-wrapper">
+        <div class="boardtitle-information">
+            👤<span th:text="${board.user_id}">닉네임</span>
+            🕘<span th:text="${#temporals.format(board.createdAt, 'MM.dd')}">작성일</span>
+<!--            👀<span th:text="${board.viewCount}">조회수</span>-->
+<!--            ❤️<span th:text="${board.likes}">좋아요</span>-->
+        </div>
+        <div class="menu-wrapper">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">⋮</label>
+            <div class="menu-content">
+                <ul>
+                    <li><a th:href="@{/board/modify/{id}(id=${board.id})}">수정</a></li>
+                    <li><a th:href="@{/board/delete/{id}(id=${board.id})}">삭제</a></li>
+                    <li><a href="#">신고</a></li>
+                    <li><a href="#">차단</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="boardcontent">
+        <p th:text="${board.content}">내용이 들어갈 부분입니다.</p>
+    </div>
+
+    <div class="post-buttons">
+        <button id="likeButton">👍 좋아요</button>
+        <button id="dislikeButton">👎 싫어요</button>
+    </div>
+
+    <div class="post-navigation">
+        <form th:action="@{/board/list}" method="get" style="display:inline">
+            <button id="prevButton">이전 글</button>
+            <input type="hidden" name="searchKeyword" th:value="${searchKeyword}" />
+            <input type="hidden" name="page" th:value="${page - 1}" />
+        </form>
+
+        <form th:action="@{/board/list}" method="get" style="display:inline">
+            <button type="submit">목록</button>
+            <input type="hidden" name="searchKeyword" th:value="${searchKeyword}" />
+            <input type="hidden" name="page" th:value="${page - 1}" />
+        </form>
+
+        <form th:action="@{/board/list}" method="get" style="display:inline">
+            <button id="nextButton">다음 글</button>
+            <input type="hidden" name="searchKeyword" th:value="${searchKeyword}" />
+            <input type="hidden" name="page" th:value="${page + 1}" />
+        </form>
+    </div>
+
+
+    <div class="comments-section">
+        <h2>댓글</h2>
+        <div id="comments">
+            <!-- 여기에 댓글들이 동적으로 추가될 예정 -->
+            <!-- 예시: -->
+            <div class="comment">
+                <p class="comment-content">댓글 내용이 들어갑니다.</p>
+                <div class="comment-meta">
+                    <span class="comment-author">작성자</span>
+                    <span class="comment-date">2024-06-17</span>
+                </div>
+            </div>
+        </div>
+        <textarea id="commentInput" placeholder="댓글을 입력하세요"></textarea>
+        <button id="commentButton">댓글쓰기</button>
+    </div>
+
+</div>
+</body>
+</html>
