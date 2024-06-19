@@ -1,5 +1,9 @@
 package project.board.service;
 
+<<<<<<< HEAD
+=======
+import jakarta.transaction.Transactional;
+>>>>>>> Board
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,6 +41,7 @@ public class BoardService {
     }
 
     // 게시글 리스트 처리
+<<<<<<< HEAD
     public Page<BoardEntity> boardList(Pageable pageable) {
 
         return boardRepository.findAll(pageable);
@@ -59,4 +64,34 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
+=======
+    public Page<BoardEntity> boardList(Pageable pageable) {return boardRepository.findAll(pageable);}
+
+    // 게시글 검색 처리
+    public Page<BoardEntity> boardSearchList(String searchKeyword, Pageable pageable) {return boardRepository.findByTitleContaining(searchKeyword, pageable);}
+
+    // 특정 게시글 불러오기
+    public BoardEntity boardView(Long id) {return boardRepository.findById(id).get();}
+
+    // 특정 게시글 삭제
+    public void boardDelete(Long id) {
+        boardRepository.deleteById(id);
+    }
+
+    // 조회수 증가
+    @Transactional
+    public void viewCount(Long id) {
+        BoardEntity board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
+        board.setViewCount(board.getViewCount() + 1);
+        boardRepository.save(board);
+    }
+
+    // 좋아요 증가
+//    @Transactional
+//    public void likeCount(Long id) {
+//        BoardEntity board = boardRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
+//        board.setLikeCount(board.getLikeCount() + 1);
+//        boardRepository.save(board);
+//    }
+>>>>>>> Board
 }

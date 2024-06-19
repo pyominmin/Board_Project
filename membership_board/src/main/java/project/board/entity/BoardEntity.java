@@ -13,7 +13,11 @@ public class BoardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+<<<<<<< HEAD
     private Integer id;
+=======
+    private Long id;
+>>>>>>> Board
 
     @Column(name = "user_id", nullable = false)
     private String user_id;
@@ -36,6 +40,15 @@ public class BoardEntity {
     @Column(name = "filepath")
     private String filepath;
 
+<<<<<<< HEAD
+=======
+    @Column(name = "view_count")
+    private int viewCount;
+
+//    @Column(name = "like_count")
+//    private int likeCount;
+
+>>>>>>> Board
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();

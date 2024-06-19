@@ -15,6 +15,10 @@ import project.board.repository.MemberRepository;
 import project.board.service.LoginService;
 import project.board.service.MemberService;
 
+<<<<<<< HEAD
+=======
+import java.time.LocalDateTime;
+>>>>>>> Board
 import java.util.Optional;
 
 @Slf4j
@@ -42,6 +46,12 @@ public class LoginController {
         if (loginResult != null) {
             // 로그인 성공
             session.setAttribute("loginEmail", loginResult.getMemberEmail());
+<<<<<<< HEAD
+=======
+            session.setAttribute("nickname", loginResult.getNickname());
+            session.setAttribute("memberNum", loginResult.getMemberNum());
+
+>>>>>>> Board
             log.info("Login Success");
             log.info(loginResult.getMemberEmail());
 
@@ -56,6 +66,7 @@ public class LoginController {
             return "html/message";
         }
     }
+<<<<<<< HEAD
 
 
     @PostMapping("/logout")
@@ -70,3 +81,6 @@ public class LoginController {
     }
 
 }
+=======
+}
+>>>>>>> Board

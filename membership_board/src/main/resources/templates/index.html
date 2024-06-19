@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 리스트 페이지</title>
+    <link rel="stylesheet" th:href="@{/boardList/boardList.css}">
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/board/list}">
+        <img th:src="@{/img/logo.png}" alt="pltoo 로고" class="logo">
+    </a>
+    <div class="auth">
+        <a href="/member/login">로그인</a>
+        <a href="/member/joinNew.html">회원가입</a>
+    </div>
+</div>
+
+<!--게시판 리스트-->
+<div class="container">
+    <div class="boardlist">
+        <section class="latest-section">
+            <ul>
+                <li th:each="board : ${list}" class="boardlistcontent">
+                    <a th:href="@{/board/view/{id}(id=${board.id}, searchKeyword=${searchKeyword}, page=${nowPage})}">
+                        <div class="content">
+                            <h3 th:text="${board.title}"></h3>
+                            <p>
+                                👤<span th:text="${board.user_id}"></span>
+                                🕘<span th:text="${#temporals.format(board.createdAt, 'MM.dd')}"></span>
+                                <!-- 👁‍🗨<span th:text="${board.viewCount}"></span> -->
+                                <!-- ❤<span th:text="${board.likes}"></span> -->
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!--목록-->
+    <div class="pagination">
+        <a th:if="${nowPage > 1}" th:href="@{/board/list(page=${0}, searchKeyword=${searchKeyword})}" class="prev-next">&laquo;</a>
+        <a th:if="${nowPage > 1}" th:href="@{/board/list(page=${nowPage - 2}, searchKeyword=${searchKeyword})}" class="prev-next">&lt;</a>
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <a th:if="${page != nowPage}" th:href="@{/board/list(page=${page - 1}, searchKeyword=${searchKeyword})}" th:text="${page}" class="page-link"></a>
+            <strong th:if="${page == nowPage}" th:text="${page}" class="current-page"></strong>
+        </th:block>
+        <a th:if="${nowPage < endPage}" th:href="@{/board/list(page=${nowPage}, searchKeyword=${searchKeyword})}" class="prev-next">&gt;</a>
+        <a th:if="${nowPage < totalPages}" th:href="@{/board/list(page=${totalPages - 1}, searchKeyword=${searchKeyword})}" class="prev-next">&raquo;</a>
+    </div>
+
+
+    <!--검색창, 글쓰기-->
+    <div class="button-container">
+        <form th:action="@{/board/list}" method="get">
+            <input type="text" name="searchKeyword" placeholder="검색어 입력">
+            <button type="submit">검색</button>
+        </form>
+        <button onclick="location.href='/board/write'" class="btn-write">글쓰기</button>
+    </div>
+</div>
+</body>
+</html>

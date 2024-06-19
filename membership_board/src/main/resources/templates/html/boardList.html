@@ -12,10 +12,15 @@
     </a>
 
     <div class="auth" th:if="${isLogin}">
+<<<<<<< HEAD
         <a href="/member/myPage">마이페이지</a>
         <form action="/logout" method="post" style="display:inline;">
             <button id="button" type="submit">로그아웃</button>
         </form>
+=======
+        <a href="/logout">마이페이지</a>
+        <a href="/logout">로그아웃</a>
+>>>>>>> Board
     </div>
     <div class="auth" th:if="${!isLogin}">
         <a href="/member/login">로그인</a>
@@ -35,7 +40,11 @@
                             <p>
                                 👤<span th:text="${board.user_id}"></span>
                                 🕘<span th:text="${#temporals.format(board.createdAt, 'MM.dd')}"></span>
+<<<<<<< HEAD
                                 <!-- 👁‍🗨<span th:text="${board.viewCount}"></span> -->
+=======
+                                 👁‍🗨<span th:text="${board.viewCount}">0</span>
+>>>>>>> Board
                                 <!-- ❤<span th:text="${board.likes}"></span> -->
                             </p>
                         </div>

@@ -26,6 +26,7 @@ public class MemberService {
     }
 
     public boolean emailExists(String memberEmail) {
+<<<<<<< HEAD
 
         return memberRepository.existsByMemberEmail(memberEmail);
     }
@@ -61,3 +62,9 @@ public class MemberService {
     }
 }
 
+=======
+        return memberRepository.existsByMemberEmail(memberEmail);
+    }
+
+}
+>>>>>>> Board
