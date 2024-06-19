@@ -36,6 +36,12 @@ public class BoardEntity {
     @Column(name = "filepath")
     private String filepath;
 
+    @Column(name = "view_count")
+    private int viewCount;
+
+//    @Column(name = "like_count")
+//    private int likeCount;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();

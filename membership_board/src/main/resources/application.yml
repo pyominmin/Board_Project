@@ -9,8 +9,8 @@ spring:
 # DataSource Setting
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/project_db # or 3306
-    username: root # or user
+    url: jdbc:mysql://localhost:3306/project_db # or 3306
+    username: user # or user
     password: 12345
 
   # Thymeleaf Cache Setting

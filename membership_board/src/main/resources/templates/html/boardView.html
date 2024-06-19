@@ -28,8 +28,14 @@
         <div class="boardtitle-information">
             👤<span th:text="${board.user_id}">닉네임</span>
             🕘<span th:text="${#temporals.format(board.createdAt, 'MM.dd')}">작성일</span>
-            👀<span>조회수</span>
-<!--            ❤️<span th:text="${board.likes}">좋아요</span>-->
+            👀<span th:text="${board.viewCount}">0</span>
+<!--                <form th:action="@{/board/like/{id}(id=${board.id})}" method="get">-->
+<!--                    <input type="hidden" name="searchKeyword" th:value="${searchKeyword}">-->
+<!--                    <input type="hidden" name="page" th:value="${page}">-->
+<!--                    <button type="submit">좋아요</button>-->
+<!--                </form>-->
+            </span>
+
         </div>
         <div class="menu-wrapper">
             <input type="checkbox" id="menu-toggle">

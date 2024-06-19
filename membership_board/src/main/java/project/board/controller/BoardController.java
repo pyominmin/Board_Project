@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import project.board.dto.MemberDTO;
 import project.board.entity.BoardEntity;
+import project.board.repository.BoardRepository;
 import project.board.service.BoardService;
 import project.board.service.LoginService;
 
@@ -25,6 +26,8 @@ public class BoardController {
     private BoardService boardService;
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private BoardRepository boardRepository;
 
 
     public BoardController(BoardService boardService) {
@@ -100,6 +103,9 @@ public class BoardController {
                             @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
                             @RequestParam(value = "page", required = false) Integer page, HttpSession session) {
 
+        // 조회수 증가
+        boardService.viewCount(id);
+
         model.addAttribute("board", boardService.boardView(id));
         model.addAttribute("searchKeyword", searchKeyword);
         model.addAttribute("page", page);
@@ -169,4 +175,12 @@ public class BoardController {
         
         return  "html/message";
     }
+
+    // 좋아요 증가
+//    @GetMapping("/like/{id}")
+//    public String likePost(@PathVariable Long id, @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+//                           @RequestParam(value = "page", required = false) Integer page, HttpSession session) {
+//        boardService.likeCount(id);
+//        return "redirect:/board/view/" + id + "?searchKeyword=" + searchKeyword + "&page=" + page;
+//    }
 }

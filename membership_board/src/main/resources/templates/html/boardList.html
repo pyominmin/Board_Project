@@ -33,7 +33,7 @@
                             <p>
                                 👤<span th:text="${board.user_id}"></span>
                                 🕘<span th:text="${#temporals.format(board.createdAt, 'MM.dd')}"></span>
-                                 👁‍🗨<span></span>
+                                 👁‍🗨<span th:text="${board.viewCount}">0</span>
                                 <!-- ❤<span th:text="${board.likes}"></span> -->
                             </p>
                         </div>
