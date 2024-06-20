@@ -9,8 +9,6 @@ import project.board.dto.MemberDTO;
 import project.board.entity.MemberEntity;
 import project.board.repository.MemberRepository;
 
-import java.util.Optional;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -26,7 +24,6 @@ public class MemberService {
     }
 
     public boolean emailExists(String memberEmail) {
-<<<<<<< HEAD
 
         return memberRepository.existsByMemberEmail(memberEmail);
     }
@@ -62,9 +59,3 @@ public class MemberService {
     }
 }
 
-=======
-        return memberRepository.existsByMemberEmail(memberEmail);
-    }
-
-}
->>>>>>> Board

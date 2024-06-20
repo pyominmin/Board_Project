@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="profile.css">
+  <title>프로필 카드</title>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-header">
+      <span class="avatar">
+        <img src="/placeholder-user.jpg" alt="사용자 아바타">
+      </span>
+      <div class="profile-info">
+        <h1 class="profile-name">재러드 팔머</h1>
+        <p class="profile-username">@jpalmz</p>
+      </div>
+    </div>
+    <div class="profile-details">
+      <div class="detail-item">
+        <label class="detail-title" for="phone-number">전화번호</label>
+        <input class="detail-value" id="phone-number" type="text" value="+1 (555) 555-5555">
+      </div>
+      <div class="detail-item">
+        <label class="detail-title" for="nickname">닉네임</label>
+        <input class="detail-value" id="nickname" type="text" value="JPalm">
+      </div>
+      <div class="detail-item">
+        <label class="detail-title" for="birthday">생일</label>
+        <div id="bir_wrap">
+          <input class="bir_yy" type="text" name="memberYear" id="yy" class="int" maxlength="4" placeholder="년(4자)">
+          <select class="bir_mm" name="memberMonth" id="mm" class="sel">
+            <option>월</option>
+            <option value="01">1</option>
+            <option value="02">2</option>
+            <option value="03">3</option>
+            <option value="04">4</option>
+            <option value="05">5</option>
+            <option value="06">6</option>
+            <option value="07">7</option>
+            <option value="08">8</option>
+            <option value="09">9</option>                                    
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <input class="bir_dd" type="text" name="memberDay" id="dd" class="int" maxlength="2" placeholder="일">
+        </div>
+      </div>
+      <div class="detail-item">
+        <label class="detail-title" for="gender">성별</label>
+        <select class="detail-value" name="memberGender" id="gender" class="sel">
+          <option>성별</option>
+          <option value="남자">남자</option>
+          <option value="여자">여자</option>
+        </select>
+      </div>
+    </div>
+    <button class="save-button">변경사항 저장</button>
+  </div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package project.board.controller;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,21 +11,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-<<<<<<< HEAD
-import project.board.entity.BoardEntity;
-import project.board.service.BoardService;
-import project.board.service.LoginService;
-
-=======
+import project.board.dto.CommentDTO;
 import project.board.dto.MemberDTO;
 import project.board.entity.BoardEntity;
 import project.board.repository.BoardRepository;
+import project.board.repository.CommentRepository;
 import project.board.service.BoardService;
+import project.board.service.CommentService;
 import project.board.service.LoginService;
 
 import java.security.cert.TrustAnchor;
 
->>>>>>> Board
+@Slf4j
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -33,11 +31,8 @@ public class BoardController {
     private BoardService boardService;
     @Autowired
     private LoginService loginService;
-<<<<<<< HEAD
-=======
     @Autowired
     private BoardRepository boardRepository;
->>>>>>> Board
 
 
     public BoardController(BoardService boardService) {
@@ -46,14 +41,10 @@ public class BoardController {
     // 글작성
     @GetMapping("/write")
     public String boardWrite(HttpSession session, Model model) {
-<<<<<<< HEAD
-        if(session.getAttribute("loginEmail") != null) {
-=======
 
         if(session.getAttribute("loginEmail") != null) {
             model.addAttribute("nickname", session.getAttribute("nickname"));
             model.addAttribute("memberNum", session.getAttribute("memberNum"));
->>>>>>> Board
             model.addAttribute("isLogin", true);
             return "html/boardWrite";
         } else {
@@ -113,20 +104,12 @@ public class BoardController {
 
     // 특정 게시글 불러오기
     @GetMapping("/view/{id}")
-<<<<<<< HEAD
-    public String boardView(@PathVariable Integer id, Model model,
-                            @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
-                            @RequestParam(value = "page", required = false) Integer page, HttpSession session) {
-//        System.out.println("사용자가 이용중이던 페이지는 " + page);
-//        System.out.println("사용자가 검색했던 검색어는 " + searchKeyword);
-=======
     public String boardView(@PathVariable Long id, Model model,
                             @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
                             @RequestParam(value = "page", required = false) Integer page, HttpSession session) {
 
         // 조회수 증가
         boardService.viewCount(id);
->>>>>>> Board
 
         model.addAttribute("board", boardService.boardView(id));
         model.addAttribute("searchKeyword", searchKeyword);
@@ -145,42 +128,26 @@ public class BoardController {
 
     // 게시글 삭제
     @GetMapping("/delete/{id}")
-<<<<<<< HEAD
-    public String boardDelete(@PathVariable Integer id, Model model) {
-        boardService.boardDelete(id);
-
-=======
     public String boardDelete(@PathVariable Long id, BoardEntity board, Model model, HttpSession session) {
         BoardEntity boardTemp = boardService.boardView(id);
         
         // 삭제 권한 확인
         if(session.getAttribute("memberNum") != null && boardTemp.getUser_id().equals(session.getAttribute("memberNum").toString())) {
         boardService.boardDelete(id);
->>>>>>> Board
         model.addAttribute("message", "글 삭제가 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
 
         return "html/message";
-<<<<<<< HEAD
-=======
         } else {
             model.addAttribute("message", "게시글 삭제 권한이 없습니다.");
             model.addAttribute("searchUrl", "/board/list");
 
             return  "html/message";
         }
->>>>>>> Board
     }
 
     // 게시글 수정
     @GetMapping("/modify/{id}")
-<<<<<<< HEAD
-    public String boardModify(@PathVariable Integer id, Model model) {
-
-        model.addAttribute("board", boardService.boardView(id));
-
-        return "html/boardModify";
-=======
     public String boardModify(@PathVariable Long id, BoardEntity board ,Model model, HttpSession session) {
         BoardEntity boardTemp = boardService.boardView(id);
 //        System.out.println("로그인한 유저의 번호는 " + session.getAttribute("memberNum"));
@@ -197,16 +164,11 @@ public class BoardController {
             return  "html/message";
         }
 
->>>>>>> Board
     }
 
     // 게시글 수정 처리
     @PostMapping("/update/{id}")
-<<<<<<< HEAD
-    public String boardUpdate(@PathVariable Integer id, BoardEntity board, Model model, MultipartFile file) throws Exception {
-=======
     public String boardUpdate(@PathVariable Long id, BoardEntity board, Model model, MultipartFile file) throws Exception {
->>>>>>> Board
 
         BoardEntity boardTemp = boardService.boardView(id);
         boardTemp.setTitle(board.getTitle());
@@ -218,8 +180,7 @@ public class BoardController {
         
         return  "html/message";
     }
-<<<<<<< HEAD
-=======
+
 
     // 좋아요 증가
 //    @GetMapping("/like/{id}")
@@ -228,5 +189,4 @@ public class BoardController {
 //        boardService.likeCount(id);
 //        return "redirect:/board/view/" + id + "?searchKeyword=" + searchKeyword + "&page=" + page;
 //    }
->>>>>>> Board
 }

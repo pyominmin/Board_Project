@@ -25,12 +25,8 @@
 <div class="container">
     <h1>게시글 작성</h1>
     <form action="/board/writepro" method="post" enctype="multipart/form-data">
-<<<<<<< HEAD
-        <input type="text" id="user_id" name="user_id" placeholder="아이디"><br><br>
-=======
         <input type="hidden" id="user_id" name="user_id" th:value="${memberNum}" placeholder="멤버번호"><br><br>
         <input type="text" id="nickname" name="nickname" th:value="${nickname}" placeholder="닉네임" readonly><br><br>
->>>>>>> Board
         <input type="text" id="title" name="title" placeholder="제목"><br><br>
         <textarea id="content" name="content" rows="4" placeholder="내용을 입력해주세요"></textarea><br><br>
         <input type="file" id="file" name="file"><br><br>

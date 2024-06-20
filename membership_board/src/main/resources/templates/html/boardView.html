@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <head>
     <meta charset="UTF-8">
     <title>게시글 상세보기 페이지</title>
@@ -28,10 +29,6 @@
         <div class="boardtitle-information">
             👤<span th:text="${board.user_id}">닉네임</span>
             🕘<span th:text="${#temporals.format(board.createdAt, 'MM.dd')}">작성일</span>
-<<<<<<< HEAD
-<!--            👀<span th:text="${board.viewCount}">조회수</span>-->
-<!--            ❤️<span th:text="${board.likes}">좋아요</span>-->
-=======
             👀<span th:text="${board.viewCount}">0</span>
 <!--                <form th:action="@{/board/like/{id}(id=${board.id})}" method="get">-->
 <!--                    <input type="hidden" name="searchKeyword" th:value="${searchKeyword}">-->
@@ -40,7 +37,6 @@
 <!--                </form>-->
             </span>
 
->>>>>>> Board
         </div>
         <div class="menu-wrapper">
             <input type="checkbox" id="menu-toggle">
@@ -85,25 +81,125 @@
             <input type="hidden" name="page" th:value="${page + 1}" />
         </form>
     </div>
+    <div id="post" th:data-post-id="@{{id}(id=${board.id})}"></div>
+    <div class="auth" th:if="${isLogin}">
+        <!-- 댓글 작성 부분 -->
+        <div id="comment-write">
+            👤<span th:text="${board.user_id}">닉네임</span>
+            <input type="text" id="commentContents" placeholder="내용">
 
-
-    <div class="comments-section">
-        <h2>댓글</h2>
-        <div id="comments">
-            <!-- 여기에 댓글들이 동적으로 추가될 예정 -->
-            <!-- 예시: -->
-            <div class="comment">
-                <p class="comment-content">댓글 내용이 들어갑니다.</p>
-                <div class="comment-meta">
-                    <span class="comment-author">작성자</span>
-                    <span class="comment-date">2024-06-17</span>
-                </div>
-            </div>
+            <button id="comment-write-btn" onclick="commentWrite()">댓글작성</button>
         </div>
-        <textarea id="commentInput" placeholder="댓글을 입력하세요"></textarea>
-        <button id="commentButton">댓글쓰기</button>
     </div>
+        <!-- 댓글 출력 부분 -->
+    <!-- 댓글 출력 부분 -->
+    <div id="comment-list">
+        <table>
+            <tr>
+                <th>작성자</th>
+                <th>내용</th>
+                <th>작성시간</th>
+            </tr>
+            <tr th:each="comment: ${commentList}">
+                <td th:text="${board.user_id}"></td>
+                <td th:text="${comment.commentContents}"></td>
+                <td th:text="${comment.commentCreatedTime}"></td>
+            </tr>
+        </table>
+    </div>
+<!--    <div class="comments-section">-->
+<!--        <h2>댓글</h2>-->
+<!--        <div id="comments">-->
+<!--            &lt;!&ndash; 여기에 댓글들이 동적으로 추가될 예정 &ndash;&gt;-->
+<!--            &lt;!&ndash; 예시: &ndash;&gt;-->
+<!--            <div class="comment">-->
+<!--                <p class="comment-content">댓글 내용이 들어갑니다.</p>-->
+<!--                <div class="comment-meta">-->
+<!--                    <span class="comment-author">작성자</span>-->
+<!--                    <span class="comment-date">2024-06-17</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <textarea id="commentInput" placeholder="댓글을 입력하세요"></textarea>-->
+<!--        <button id="commentButton">댓글쓰기</button>-->
+<!--    </div>-->
 
 </div>
 </body>
+<script th:inline="javascript">
+
+    // 댓글 저장 함수
+    const commentWrite = () => {
+        const writer = [[${board.user_id}]];
+        const contents = document.getElementById("commentContents").value;
+        const id = [[${board.id}]];
+
+        console.log("작성자: ", writer);
+        console.log("내용: ", contents);
+        console.log("게시글 ID: ", id);
+
+        // 댓글 저장 요청
+        $.ajax({
+            type: "post",
+            url: "/comment/save",
+            data: {
+                "commentWriter": writer,
+                "commentContents": contents,
+                "boardId": id
+            },
+            success: function (res) {
+                console.log("댓글 저장 요청 성공", res);
+                // 댓글 저장 후 댓글 리스트를 새로 불러옵니다.
+                loadComments(id);
+                // 입력 필드 초기화
+                document.getElementById('commentWriter').value = '';
+                document.getElementById('commentContents').value = '';
+            },
+            error: function (err) {
+                console.log("댓글 저장 요청 실패", err);
+            }
+        });
+    };
+
+    // 댓글 리스트 불러오기 함수
+    const loadComments = () => {
+        const boardId = [[${board.id}]];
+        // 댓글 리스트를 초기화
+        document.getElementById('comment-list').innerHTML = "";
+
+        // 댓글 불러오기 요청
+        $.ajax({
+            type: "GET",
+            url: "/comment/list",
+            data: {
+                "boardId": boardId
+            },
+            success: function (res) {
+                console.log("댓글 리스트 불러오기 성공", res);
+                let output = "<table>";
+                output += "<tr><th>작성자</th>";
+                output += "<th>내용</th>";
+                output += "<th>작성시간</th></tr>";
+                for (let i in res) {
+                    output += "<tr>";
+                    output += "<td>" + res[i].commentWriter + "</td>";
+                    output += "<td>" + res[i].commentContents + "</td>";
+                    output += "<td>" + res[i].commentCreatedTime + "</td>";
+                    output += "</tr>";
+                }
+                output += "</table>";
+                document.getElementById('comment-list').innerHTML = output;
+            },
+            error: function (err) {
+                console.log("댓글 리스트 불러오기 실패", err);
+            }
+        });
+    };
+
+    // 페이지 로드 시 현재 게시글의 댓글을 불러옵니다.
+    $(document).ready(function () {
+        const boardId = [[${board.id}]];
+        loadComments(boardId);
+    });
+</script>
 </html>

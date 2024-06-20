@@ -67,6 +67,8 @@ public class MypageController {
                 // 회원 정보 업데이트
                 memberService.updateMemberInfo(memberEmail, memberPno, memberNickname, memberGender);
                 model.addAttribute("message", "회원 정보가 성공적으로 업데이트되었습니다.");
+                model.addAttribute("searchUrl", "/member/myPage");
+
 
                 // 업데이트된 회원 정보를 다시 조회합니다.
                 Optional<MemberEntity> updatedMemberInfo = memberRepository.findByMemberEmail(memberEmail);
@@ -93,6 +95,6 @@ public class MypageController {
             model.addAttribute("error", "로그인 상태를 확인할 수 없습니다.");
         }
 
-        return "html/profile"; // 업데이트된 정보를 포함하여 뷰로 이동
+        return "html/message"; // 업데이트된 정보를 포함하여 뷰로 이동
     }
 }

@@ -28,19 +28,12 @@ public class MemberDTO {
     private String nickname;
     private String memberGender;
 
-<<<<<<< HEAD
-    public MemberDTO(String memberEmail, String memberPassword, String memberName,
-=======
     public MemberDTO(Long memberNum, String memberEmail, String memberPassword, String memberName,
->>>>>>> Board
                      String memberYear, String memberMonth, String memberDay,
                      String memberGender, String memberPno, String birthDateFormatted,
                      String nickname) {
 
-<<<<<<< HEAD
-=======
         this.memberNum = memberNum;
->>>>>>> Board
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberName = memberName;
@@ -53,25 +46,10 @@ public class MemberDTO {
         this.memberGender = memberGender;
     }
 
-<<<<<<< HEAD
-    // 생성자를 통해 모든 필드를 초기화하는 경우
-    public MemberDTO(String memberEmail, String memberPassword, String memberName, String nickname, String birthDateFormatted) {
-        this.memberEmail = memberEmail;
-        this.memberPassword = memberPassword;
-        this.memberName = memberName;
-        this.nickname = nickname;
-        this.birthDateFormatted = birthDateFormatted;
-    }
-
-
-    public static MemberDTO fromEntity(MemberEntity memberEntity) {
-        MemberDTO memberDTO = new MemberDTO();
-=======
 
     public static MemberDTO fromEntity(MemberEntity memberEntity) {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setMemberNum(memberEntity.getNum()); // 이 부분 수정
->>>>>>> Board
         memberDTO.setMemberEmail(memberEntity.getMemberEmail());
         memberDTO.setMemberPassword(memberEntity.getMemberPassword());
         memberDTO.setMemberName(memberEntity.getMemberName());
