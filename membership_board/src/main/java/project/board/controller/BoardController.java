@@ -14,13 +14,16 @@ import org.springframework.web.multipart.MultipartFile;
 import project.board.dto.CommentDTO;
 import project.board.dto.MemberDTO;
 import project.board.entity.BoardEntity;
+import project.board.entity.MemberEntity;
 import project.board.repository.BoardRepository;
 import project.board.repository.CommentRepository;
+import project.board.repository.MemberRepository;
 import project.board.service.BoardService;
 import project.board.service.CommentService;
 import project.board.service.LoginService;
 
 import java.security.cert.TrustAnchor;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -33,7 +36,8 @@ public class BoardController {
     private LoginService loginService;
     @Autowired
     private BoardRepository boardRepository;
-
+    @Autowired
+    private MemberRepository memberRepository;
 
     public BoardController(BoardService boardService) {
     }
@@ -108,6 +112,16 @@ public class BoardController {
                             @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
                             @RequestParam(value = "page", required = false) Integer page, HttpSession session) {
 
+        String memberEmail = (String) session.getAttribute("loginEmail");
+        Optional<MemberEntity> memberInfo = memberRepository.findByMemberEmail(memberEmail);
+
+        if (memberInfo.isPresent()) {
+            model.addAttribute("nickname", memberInfo.get().getNickname());
+        } else {
+            // Optional에 값이 없는 경우의 처리
+            model.addAttribute("nickname", "Anonymous"); // 또는 적절한 기본값 제공
+        }
+
         // 조회수 증가
         boardService.viewCount(id);
 
@@ -116,7 +130,7 @@ public class BoardController {
         model.addAttribute("page", page);
 
         // 로그인 상태면 true
-        if(session.getAttribute("loginEmail") != null) {
+        if (session.getAttribute("loginEmail") != null) {
             model.addAttribute("isLogin", true);
         } else {
             model.addAttribute("isLogin", false);

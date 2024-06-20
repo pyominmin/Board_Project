@@ -1,5 +1,6 @@
 package project.board.controller;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,11 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import project.board.dto.CommentDTO;
+import project.board.entity.MemberEntity;
+import project.board.repository.MemberRepository;
 import project.board.service.CommentService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -25,7 +29,8 @@ public class CommentController {
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
-
+    @Autowired
+    private MemberRepository memberRepository;
 
     @PostMapping("/save")
     public ResponseEntity<?> save(@ModelAttribute CommentDTO commentDTO) {
@@ -48,7 +53,7 @@ public class CommentController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<?> list(@RequestParam Long boardId) {
+    public ResponseEntity<?> list(@RequestParam Long boardId, HttpSession session) {
         log.info("게시글 ID로 댓글 불러오기: boardId = " + boardId);
 
         // 게시글 ID에 해당하는 댓글 목록 불러오기

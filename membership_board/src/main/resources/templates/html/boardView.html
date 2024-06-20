@@ -13,8 +13,10 @@
         <img th:src="@{/img/logo.png}" alt="pltoo 로고" class="logo">
     </a>
     <div class="auth" th:if="${isLogin}">
-        <a href="/logout">마이페이지</a>
-        <a href="/logout">로그아웃</a>
+        <a href="/member/myPage">마이페이지</a>
+        <form action="/logout" method="post" style="display:inline;">
+            <button id="button" type="submit">로그아웃</button>
+        </form>
     </div>
     <div class="auth" th:if="${!isLogin}">
         <a href="/member/login">로그인</a>
@@ -85,7 +87,7 @@
     <div class="auth" th:if="${isLogin}">
         <!-- 댓글 작성 부분 -->
         <div id="comment-write">
-            👤<span th:text="${board.user_id}">닉네임</span>
+            👤<span th:text="${nickname}">닉네임</span>
             <input type="text" id="commentContents" placeholder="내용">
 
             <button id="comment-write-btn" onclick="commentWrite()">댓글작성</button>
@@ -101,7 +103,7 @@
                 <th>작성시간</th>
             </tr>
             <tr th:each="comment: ${commentList}">
-                <td th:text="${board.user_id}"></td>
+                <td th:text="${nickname}"></td>
                 <td th:text="${comment.commentContents}"></td>
                 <td th:text="${comment.commentCreatedTime}"></td>
             </tr>
@@ -130,7 +132,7 @@
 
     // 댓글 저장 함수
     const commentWrite = () => {
-        const writer = [[${board.user_id}]];
+        const writer = [[${nickname}]];
         const contents = document.getElementById("commentContents").value;
         const id = [[${board.id}]];
 

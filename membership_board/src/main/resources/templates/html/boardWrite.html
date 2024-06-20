@@ -13,8 +13,10 @@
     </a>
 
     <div class="auth" th:if="${isLogin}">
-        <a href="/logout">마이페이지</a>
-        <a href="/logout">로그아웃</a>
+        <a href="/member/myPage">마이페이지</a>
+        <form action="/logout" method="post" style="display:inline;">
+            <button id="button" type="submit">로그아웃</button>
+        </form>
     </div>
     <div class="auth" th:if="${!isLogin}">
         <a href="/member/login">로그인</a>

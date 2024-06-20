@@ -61,6 +61,18 @@ body {
     border-radius: 5px;
 }
 
+#button {
+    padding: 5px 10px; /* 기존의 8px 16px에서 패딩 크기를 줄임 */
+    margin-left: 5px; /* 각 링크 사이의 공간을 조정 */
+    font-size: 12px; /* 텍스트 크기를 줄임 */
+    background-color: #b3fcf8;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;              /* 기본 테두리 */
+    cursor: pointer;
+}
+
 /*게시글 작성 부분*/
 .container {
     max-width: 600px;
