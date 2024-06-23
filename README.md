@@ -10,31 +10,32 @@
 
 ## 기술 스택
 
-| Spring Boot |
-| :--------: |
-|<img src="https://images.velog.io/images/galaxy/post/b501f325-1810-4e26-962e-e66ca0b94ca9/image.png" width="100px">   |
+| Spring Boot | Html/CSS/JavaScript| MySQL | Docker | Redis |
+| :--------: | :--------: | :--------: | :--------: | :--------: |
+|<img src="https://images.velog.io/images/galaxy/post/b501f325-1810-4e26-962e-e66ca0b94ca9/image.png" width="100px">   |<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA9h4HeUrM518StL4CQ1gnf2lQiIH-DH3xpg&s" width="100px">   |<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF9UXfrx8TWM7eyKB1jdIk66ZoGVmTtqWjKQ&s" width="100px">|<img src="https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg" width="100px">|<img src="https://1000logos.net/wp-content/uploads/2020/08/Redis-Logo.png" width="100px">|
 <br>
 
 ## 구현 기능
 
-### 1. 친구 추천 기능
+### 1. 회원가입
 
-### 2. 게임 추천 기능
+### 2. 로그인
 
-### 3. 회원등급 조회 기능
+### 3. 마이페이지(회원 정보 수정)
 
-### 4. 질문, 문의, 신고
+### 4. 게시글 등록, 삭제, 수정, 조회수
 
-<p align="center">
-<img src="https://github.com/pyominmin/ChatBot_Project/blob/main/images/%EA%B8%B0%EB%8A%A5.png">
-</p>
+### 5. 댓글
 
 <br>
 
 ## 배운 점
->  한 파일 안에 코드 집단화 방지를 위해 다양한 방법으로 시도하면서 bluprint라는 방식을 배워 접목시켰다.(https://wikidocs.net/81510(블루프린트 참고 사이트))
-> 개발한 API와 연계하여 데이터를 주고 받고 챗봇의 응답을 구성하는 과정을 배웠다.
+> 프론트엔드와 백엔드로 하나의 서비스를 완성하면서 Web 서비스를 만드는 개념과 기본기를 다졌다.
+> 완성한 서비스를 AWS EC2 배포 하는 경험을 했다.
+> Docker container를 통해 REDIS를 실행 후 Test 코드 연결을 성공 했다.
+> REDIS에 대한 개념을 더 공부한 후 실제 코드를 연결해서 POSTMAN load test 진행 할 예정이다.
 <br>
 
 ## 아쉬운 점
-> 실제로 웹 서비스화를 하지 못해서 아쉬웠다. 다음에는 실제로 사용할 수 있는 서비스를 만들어보고 싶다.
+> Redis를 적용하는데 개념이 부족해 개념공부를 더 한뒤 프로젝트를 진행해야 한다.
+> 다음 프로젝트에서는 다른 기능(API를 활용한)을 추가하고 싶다.
