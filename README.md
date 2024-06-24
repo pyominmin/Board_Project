@@ -9,9 +9,9 @@
 
 ## 기술 스택
 
-| Spring Boot | Html/CSS/JavaScript| MySQL | Docker | Redis |
-| :--------: | :--------: | :--------: | :--------: | :--------: |
-|<img src="https://images.velog.io/images/galaxy/post/b501f325-1810-4e26-962e-e66ca0b94ca9/image.png" width="100px">   |<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA9h4HeUrM518StL4CQ1gnf2lQiIH-DH3xpg&s" width="100px">   |<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF9UXfrx8TWM7eyKB1jdIk66ZoGVmTtqWjKQ&s" width="100px">|<img src="https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg" width="100px">|<img src="https://1000logos.net/wp-content/uploads/2020/08/Redis-Logo.png" width="100px">|
+| Spring Boot | MyBatis  | Html/CSS/JavaScript| MySQL | Docker | Redis |
+| :--------: | :--------: | :--------: | :--------: | :--------: | :--------: |
+|<img src="https://images.velog.io/images/galaxy/post/b501f325-1810-4e26-962e-e66ca0b94ca9/image.png" width="100px"> |<img src="https://velog.velcdn.com/images/parkirae/post/7987977e-4187-4756-a09f-c8e8ceda6e4d/image.png" width="100px">|<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA9h4HeUrM518StL4CQ1gnf2lQiIH-DH3xpg&s" width="100px">   |<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF9UXfrx8TWM7eyKB1jdIk66ZoGVmTtqWjKQ&s" width="100px">|<img src="https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg" width="100px">|<img src="https://1000logos.net/wp-content/uploads/2020/08/Redis-Logo.png" width="100px">|
 <br>
 
 ## 구현 기능
