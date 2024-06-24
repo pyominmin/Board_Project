@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 작성 페이지</title>
+    <link rel="stylesheet" th:href="@{/boardWrite/boardWrite.css}">
+</head>
+<body>
+<!--상단 고정바-->
+<div class="header">
+    <a th:href="@{/board/list}">
+        <img th:src="@{/img/logo.png}" alt="pltoo 로고" class="logo">
+    </a>
+
+    <div class="auth" th:if="${isLogin}">
+        <a href="/logout">마이페이지</a>
+        <a href="/logout">로그아웃</a>
+    </div>
+    <div class="auth" th:if="${!isLogin}">
+        <a href="/member/login">로그인</a>
+        <a href="/member/joinNew.html">회원가입</a>
+    </div>
+</div>
+
+<div class="container" >
+    <h1>게시글 작성</h1>
+    <form action="/board/writepro" method="post" enctype="multipart/form-data">
+        <input type="hidden" id="user_id" name="user_id" th:value="${memberNum}" placeholder="멤버번호"><br><br>
+        <input type="text" id="nickname" name="nickname" th:value="${nickname}" placeholder="닉네임" readonly><br><br>
+        <input type="text" id="title" name="title" placeholder="제목"><br><br>
+        <textarea id="content" name="content" rows="4" placeholder="내용을 입력해주세요"></textarea><br><br>
+        <input type="file" id="file" name="file"><br><br>
+        <div class="button-container">
+            <button type="submit">등록</button>
+            <button type="button" onclick="window.location.href='/board/list'">취소</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

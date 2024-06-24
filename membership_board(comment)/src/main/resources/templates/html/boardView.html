@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세보기 페이지</title>
+    <link rel="stylesheet" th:href="@{/boardView/boardView.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<!--상단 고정바-->
+<div class="header">
+    <a th:href="@{/board/list}">
+        <img th:src="@{/img/logo.png}" alt="pltoo 로고" class="logo">
+    </a>
+    <div class="auth" th:if="${isLogin}">
+        <a href="/logout">마이페이지</a>
+        <a href="/logout">로그아웃</a>
+    </div>
+    <div class="auth" th:if="${!isLogin}">
+        <a href="/member/login">로그인</a>
+        <a href="/member/joinNew.html">회원가입</a>
+    </div>
+</div>
+
+<!--게시글 상세보기 부분-->
+<div class="body">
+    <h1 th:text="${board.title}" class="boardtitle">제목입니다.</h1>
+    <div class="board-wrapper">
+        <div class="boardtitle-information">
+            👤<span th:text="${board.userId}">닉네임</span>
+            🕘<span th:text="${#temporals.format(board.createdAt, 'MM.dd')}"></span>
+<!--            👀<span th:text="${board.viewCount}">0</span>-->
+<!--                <form th:action="@{/board/like/{id}(id=${board.id})}" method="get">-->
+<!--                    <input type="hidden" name="searchKeyword" th:value="${searchKeyword}">-->
+<!--                    <input type="hidden" name="page" th:value="${page}">-->
+<!--                    <button type="submit">좋아요</button>-->
+<!--                </form>-->
+            </span>
+
+        </div>
+        <div class="menu-wrapper">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">⋮</label>
+            <div class="menu-content">
+                <ul>
+                    <li><a th:href="@{/board/modify/{id}(id=${board.id})}">수정</a></li>
+                    <li><a th:href="@{/board/delete/{id}(id=${board.id})}">삭제</a></li>
+                    <li><a href="#">신고</a></li>
+                    <li><a href="#">차단</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="boardcontent">
+        <p th:text="${board.content}">내용이 들어갈 부분입니다.</p>
+    </div>
+
+    <div class="post-buttons">
+        <button id="likeButton">👍 좋아요</button>
+        <button id="dislikeButton">👎 싫어요</button>
+    </div>
+
+    <div class="post-navigation">
+        <form th:action="@{/board/list}" method="get" style="display:inline">
+            <button id="prevButton">이전 글</button>
+            <input type="hidden" name="searchKeyword" th:value="${searchKeyword}" />
+            <input type="hidden" name="page" th:value="${page - 1}" />
+        </form>
+
+        <form th:action="@{/board/list}" method="get" style="display:inline">
+            <button type="submit">목록</button>
+            <input type="hidden" name="searchKeyword" th:value="${searchKeyword}" />
+            <input type="hidden" name="page" th:value="${page - 1}" />
+        </form>
+
+        <form th:action="@{/board/list}" method="get" style="display:inline">
+            <button id="nextButton">다음 글</button>
+            <input type="hidden" name="searchKeyword" th:value="${searchKeyword}" />
+            <input type="hidden" name="page" th:value="${page + 1}" />
+        </form>
+    </div>
+
+
+<!--    댓글 리스트 부분-->
+    <div id="commentList">
+        <!-- 여기에 댓글 목록이 동적으로 추가될 예정 -->
+    </div>
+    <div id="commentStatus"></div>
+
+<!--    댓글 작성 부분-->
+        <form id="commentForm">
+            <input type="hidden" id="boardId" name="boardId" th:value="${board.id}" placeholder="게시판번호" readonly><br><br>
+            <!-- 유저 번호 -->
+            <input type="hidden" id="memberId" name="memberId" th:value="${memberNum}" placeholder="멤버번호" readonly><br><br>
+            <!-- 내용 -->
+            <textarea name="content" id="content" placeholder="댓글을 입력하세요"></textarea><br>
+            <button type="submit">댓글 작성</button>
+        </form>
+
+</div>
+</body>
+
+<script>
+    $(document).ready(function (){
+        const boardId = $("#boardId").val();
+
+        // 댓글 리스트 초기화
+        function loadComments() {
+            $.ajax({
+                type: "GET",
+                url: "/comments/board/" + boardId,
+                success: function (response) {
+
+                    // 기존 댓글 목록 초기화
+                    $("#commentList").empty();
+
+                    // 새로운 댓글 목록 추가
+                    response.forEach(function (comment) {
+                        $("#commentList").append(
+                            "<li><strong>" + comment.memberId + "</strong>: " + comment.content + " <em>(" + comment.createdAt + ")</em></li>"
+                        );
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error("댓글 목록을 불러오는 중 오류가 발생했습니다.")
+                }
+            });
+        }
+
+        // 페이지 로드 시 댓글 목록 로드
+        loadComments();
+
+
+        // 댓글 처리 함수
+        $("#commentForm").submit(function(event) {
+            event.preventDefault(); // 폼의기본 제출 동작을 막음
+
+            const formData = {
+                boardId:  $("#boardId").val(),
+                memberId: $("#memberId").val(),
+                content:  $("#content").val()
+            // JSON형태로 전해지며 이는 CommentControlloer에서 commentDTO로 값을 받으므로 CommentDTO와 컬럼명이 같아야 한다. 그 뒤에는 html의 값을 받아오므로 name 또는  id와 이름이 같아야 한다,
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/comments",
+                contentType: "application/json",
+                data: JSON.stringify(formData),
+                success: function (response) {
+                    // 댓글 추가 성공 시 입력 폼 초기화
+                    $("#commentStatus").html("<p>" + response + "</p>");
+                    $("#content").val("");
+                    loadComments(); // 댓글 목록 다시 로드
+                },
+                error: function(xhr, status, error) {
+                    $("#commentStatus").html("<p>오류: " + xhr.responseText + "</p>");
+                }
+            });
+        });
+    });
+
+</script>
+</html>

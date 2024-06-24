@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.logo {
+    width: 160px;
+    height: 80px;
+}
+
+h3 {
+    color: #353535;
+    margin-bottom: 0px;
+    margin-top: -40px;
+}
+
+.login-box, .flu-login-box {
+    width: 600px;
+    height: 480px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.login-box.active, .flu-login-box.active {
+    display: flex; /* 활성화시 flex로 변경 */
+}
+
+.login-box .login-buttons button, .flu-login-box .login-buttons button {
+    width: 500px;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#button{
+    width: 500px;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-box .login-buttons button:hover, .flu-login-box .login-buttons button:hover {
+    background-color: #d0d0d0;
+}
+
+#button:hover{
+    background-color: #d0d0d0;
+}
+
+#input1, #input2 {
+    width: 300px;
+    height: 50px;
+    background-color: white;
+    border: 3px solid #d0d0d0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

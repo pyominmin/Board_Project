@@ -1,0 +1,227 @@
+@media screen and (max-width: 2000px) {
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100vh; /* Viewport height를 100% 채우기 */
+    }
+
+    #wrapper {
+        flex: 1;
+    }
+
+    #withdrawSection {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px; /* 여백 추가 */
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        padding: 0 20px;
+        height: 64px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9;
+    }
+
+    .logo {
+        width: 120px;
+        height: 56px;
+        margin-right: 40px;
+    }
+
+
+
+    .auth {
+        display: flex;
+        align-items: center;
+        margin-right: 100px; /* 오른쪽에 자동 마진을 적용하여 왼쪽으로 이동 */
+    }
+
+    .auth a {
+        padding: 5px 10px; /* 기존의 8px 16px에서 패딩 크기를 줄임 */
+        margin-left: 5px; /* 각 링크 사이의 공간을 조정 */
+        font-size: 12px; /* 텍스트 크기를 줄임 */
+        background-color: #b3fcf8;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    #button {
+        padding: 5px 10px; /* 기존의 8px 16px에서 패딩 크기를 줄임 */
+        margin-left: 5px; /* 각 링크 사이의 공간을 조정 */
+        font-size: 12px; /* 텍스트 크기를 줄임 */
+        background-color: #b3fcf8;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        border: none;              /* 기본 테두리 */
+        cursor: pointer;
+    }
+
+    /* Reset CSS */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        margin-top: 70px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .boardlist {
+        margin-top: 20px;
+    }
+
+    .boardlist ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .boardlist li {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        background-color: #fafafa;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .boardlist li:hover {
+        background-color: #f0f0f0;
+    }
+
+    .boardlist a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+        padding: 10px;
+    }
+
+    .boardlist h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .boardlist .content {
+        padding: 10px;
+    }
+
+    .boardlist .info {
+        color: #888;
+        font-size: 14px;
+    }
+
+    .pagination {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .pagination a, .pagination strong {
+        margin: 0 5px;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .pagination a:hover {
+        background-color: #eee;
+    }
+
+    .button-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .button-container form {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .button-container form input[type="text"] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        width: 200px;
+    }
+
+    .button-container form button {
+        padding: 8px 16px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .button-container .btn-write {
+        padding: 8px 16px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .page-link, .prev-next, .current-page {
+        margin: 0 5px;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .page-link:hover, .prev-next:hover {
+        background-color: #f2f2f2;
+        border-color: #007bff;
+    }
+
+    .current-page {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+    .prev-next {
+        font-size: 18px; /* Adjust size if needed */
+    }
+}

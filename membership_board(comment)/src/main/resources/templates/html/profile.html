@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프로필 카드</title>
+  <!-- CSS 파일 링크, thymeleaf 사용하여 경로 설정 -->
+  <link rel="stylesheet" th:href="@{/profile/profile.css}">
+  <script th:src="@{/profile/profile.js}"></script>
+</head>
+<body>
+<!-- 폼, POST 메서드 사용 -->
+<form action="/member/change" method="post">
+  <div class="profile-container">
+    <div class="profile-header">
+        <span class="avatar">
+          <!-- 사용자 아바타 이미지 -->
+          <img src="" alt="사용자 아바타">
+        </span>
+      <div class="profile-info">
+        <!-- 회원 이름 표시 -->
+        <h1 class="profile-name" th:text="${memberName}">회원 이름</h1>
+        <p class="profile-username" th:text="${memberEmail}">@jpalmz</p>
+      </div>
+    </div>
+    <div class="profile-details">
+      <div class="detail-item">
+        <label class="detail-title" for="phone-number">전화번호</label>
+        <input class="detail-value" id="phone-number" name="memberPno" type="text" th:value="${memberPhoneNumber}" placeholder="전화번호">
+      </div>
+      <div class="detail-item">
+        <label class="detail-title" for="nickname">닉네임</label>
+        <input class="detail-value" id="nickname" name="memberNickname" type="text" th:value="${memberNickname}" placeholder="닉네임">
+      </div>
+      <div class="detail-item">
+        <label class="detail-title" for="gender">성별</label>
+        <!-- class 속성 중복 제거 -->
+        <select name="memberGender" id="gender" class="detail-value">
+          <option value="">성별</option>
+          <option value="남자">남자</option>
+          <option value="여자">여자</option>
+        </select>
+      </div>
+    </div>
+    <button class="save-button" type="submit">변경사항 저장</button>
+  </div>
+</form>
+</body>
+</html>
