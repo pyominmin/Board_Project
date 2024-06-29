@@ -60,8 +60,8 @@ public class BoardController {
 
     // 글작성 처리
     @PostMapping("/writepro")
-    public String boardWritePro(BoardEntity board, Model model, MultipartFile file) throws Exception {
-        boardService.boardWrite(board, file);
+    public String boardWritePro(BoardEntity board, Model model) throws Exception {
+        boardService.boardWrite(board);
         model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
 
@@ -169,12 +169,12 @@ public class BoardController {
 
     // 게시글 수정 처리
     @PostMapping("/update/{id}")
-    public String boardUpdate(@PathVariable Long id, BoardEntity board, Model model, MultipartFile file) throws Exception {
+    public String boardUpdate(@PathVariable Long id, BoardEntity board, Model model) throws Exception {
 
         BoardEntity boardTemp = BoardEntity.toBoardEntity(boardService.boardView(id));
         boardTemp.setTitle(board.getTitle());
         boardTemp.setContent(board.getContent());
-        boardService.boardWrite(boardTemp, file);
+        boardService.boardWrite(boardTemp);
 
         model.addAttribute("message", "글 수정이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");

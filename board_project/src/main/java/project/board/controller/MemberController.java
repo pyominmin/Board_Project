@@ -55,7 +55,7 @@ public class MemberController {
 
         try {
             memberService.save(memberDTO, memberDTO.getMemberPassword());
-            return "/html/loginForm";
+            return "html/loginForm";
         } catch (Exception e) {
             log.error("Error while encrypting password", e);
             return "error"; // 적절한 오류 페이지로 리다이렉션

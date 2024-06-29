@@ -13,8 +13,6 @@ import project.board.repository.BoardRepository;
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class }) // Spring Security 자동 구성 비활성화
 public class BoardApplication{  //implements CommandLineRunner
 
-    @Autowired
-    private BoardRepository boardRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
